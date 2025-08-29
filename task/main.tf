@@ -44,7 +44,7 @@ variable "task_container_memory_reservation" {
 }
 variable "resource_requirements" {
   default = []
-  type    = list(string)
+  type    = list
 }
 variable "task_container_command" {
   default = []
