@@ -42,6 +42,10 @@ variable "task_container_memory_reservation" {
   default = null
   type    = number
 }
+variable "resource_requirements" {
+  default = []
+  type    = list(string)
+}
 variable "task_container_command" {
   default = []
   type    = list(string)
@@ -260,6 +264,7 @@ resource "aws_ecs_task_definition" "task" {
         "essential": true,
         "systemControls": ${jsonencode(var.system_controls)},
         "volumesFrom": ${jsonencode(var.volumes_from)},
+        "resourceRequirements": ${jsonencode(var.resource_requirements)},
         "privileged": ${var.privileged},
         "linuxParameters": {
           "capabilities": {
