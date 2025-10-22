@@ -57,7 +57,9 @@ resource "vsphere_virtual_machine" "vmFromRemoteOvf" {
   network_interface {
     network_id = data.vsphere_network.network.id
   }
-
+  lifecycle {
+    ignore_changes = all
+  }
   ovf_deploy {
     allow_unverified_ssl_cert = true
     remote_ovf_url            = lookup(var.vsphere_conf[0], "template")
